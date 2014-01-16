@@ -6,7 +6,7 @@ import com.pci.fbo.pojo.KeyValue
  * Date: 1/16/14
  * Time: 9:08 AM
  */
-def parse(filename, type){
+def int parse(filename, type){
     def file = new File(filename)
     DocToIndex doc = new DocToIndex()
     StringBuilder sb = new StringBuilder();
@@ -19,10 +19,16 @@ def parse(filename, type){
             def http = "http://localhost:9200/fbo/" + type.toString().toLowerCase() + "/"
 
             def proc = ["curl", "-X POST", http, '-d ' + doc.toString()].execute()
-            println(proc.text)
+
+            def returnCode = proc.text
+
+            if( returnCode.contains("error") ){
+                print( "\t\t" + doc.toString() + "\n\t\t" )
+            }
+            println( returnCode )
             proc.waitFor()
 
-            println(doc.toString())
+//            println(doc.toString())
         }else if(line.contains(type)){
             doc = new DocToIndex()
             doc.setType(type.toString().toLowerCase())
@@ -34,6 +40,7 @@ def parse(filename, type){
             fields.put(kv.getKey(), kv.getValue())
         }
     }
+
 }
 
 def  KeyValue convertField(String line){
@@ -75,9 +82,9 @@ def  KeyValue convertField(String line){
         keyValue.setValue(parseLine(line))
     }else if(line.contains("ARCHDATE")){
         keyValue.setKey("archdate")
-        keyValue.setValue(parseLine(line))
     }else if(line.contains("CONTACT")){
         keyValue.setKey("contact")
+        keyValue.setValue(parseLine(line))
         keyValue.setValue(parseLine(line))
     }else if(line.contains("DESC")){
         keyValue.setKey("desc")
@@ -113,8 +120,6 @@ def parseLine(String line){
         for(int i = 1; i < val.size(); i++){
             sb.append(val[i])
         }
-
-        println("**************** returning " + sb.toString())
         URLEncoder.encode( sb.toString(), "UTF-8" ).toString()
 
     }else{
@@ -127,6 +132,7 @@ def parsePreSolCombine(String feed){
    parse(feed, "COMBINE")
 }
 
+
 for(int i = 1; i < 16; i++){
     String day = ""
 
@@ -135,7 +141,8 @@ for(int i = 1; i < 16; i++){
     }else{
         day = i
     }
-    parsePreSolCombine('FBOFeed201401' + day)
 }
 
+
 //parsePreSolCombine('FBOFeed20140101')
+
