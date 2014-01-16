@@ -16,4 +16,15 @@ def downloadDay(baseUrl, yyyyMMdd){
     download(baseUrl + "FBOFeed" + yyyyMMdd)
 }
 
-downloadDay(baseUrl, "20140101")
+for(int i = 1; i < 16; i++){
+   String day = ""
+
+   if( ("" + i).length() == 1 ){
+       day = "0" + i
+   }else{
+       day = i
+   }
+   downloadDay(baseUrl, "201401" + day)
+
+}
+//downloadDay(baseUrl, "20140102")

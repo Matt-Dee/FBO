@@ -101,9 +101,22 @@ def  KeyValue convertField(String line){
 }
 
 def parseLine(String line){
+
+
+
     String [] val = line.split(">")
-    if(val.size() > 1){
+    if(val.size() == 2){
         val[1]
+    }else if(val.size() > 2){
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 1; i < val.size(); i++){
+            sb.append(val[i])
+        }
+
+        println("**************** returning " + sb.toString())
+        URLEncoder.encode( sb.toString(), "UTF-8" ).toString()
+
     }else{
         ""
     }
@@ -114,4 +127,15 @@ def parsePreSolCombine(String feed){
    parse(feed, "COMBINE")
 }
 
-parsePreSolCombine('FBOFeed20140101')
+for(int i = 1; i < 16; i++){
+    String day = ""
+
+    if( ("" + i).length() == 1 ){
+        day = "0" + i
+    }else{
+        day = i
+    }
+    parsePreSolCombine('FBOFeed201401' + day)
+}
+
+//parsePreSolCombine('FBOFeed20140101')
