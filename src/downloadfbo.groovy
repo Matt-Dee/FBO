@@ -53,9 +53,7 @@ if(args.length == 0){
 
     currentDay = beginDate
     while( currentDay.compareTo(endDate) <= 0 ){
-         println(currentDay.format("yyyyMMdd"))
          downloadDay(baseUrl, currentDay.format("yyyyMMdd"))
          currentDay = currentDay + 1
-         println(currentDay.format("yyyyMMdd"))
     }
 }
