@@ -1,5 +1,6 @@
 import com.pci.fbo.json.doc.DocToIndex
 import com.pci.fbo.pojo.KeyValue
+import groovy.io.FileType
 
 /**
  * User: mdonnelly
@@ -132,18 +133,14 @@ def parsePreSolCombine(String feed){
 }
 
 
-for(int i = 1; i < 16; i++){
-    String day = ""
+def list = []
 
-    if( ("" + i).length() == 1 ){
-        day = "0" + i
-    }else{
-        day = i
-    }
-
-    parsePreSolCombine("FBOFeed201401$day")
+def dir = new File("./downloads/")
+dir.eachFileRecurse (FileType.FILES) { file ->
+  list << file
 }
 
-
-//parsePreSolCombine('FBOFeed20140101')
+list.each {
+   parsePreSolCombine(it.path)
+}
 
