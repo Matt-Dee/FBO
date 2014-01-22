@@ -6,7 +6,7 @@ import com.pci.fbo.pojo.KeyValue
  * Date: 1/16/14
  * Time: 9:08 AM
  */
-def int parse(filename, type){
+def parse(filename, type){
     def file = new File(filename)
     DocToIndex doc = new DocToIndex()
     StringBuilder sb = new StringBuilder();
@@ -14,6 +14,7 @@ def int parse(filename, type){
     Map<String, String> fields = new HashMap<String, String>()
 
     file.eachLine { line ->
+  
         if(line.contains("/" + type)){
             doc.setFields(fields)
             def http = "http://localhost:9200/fbo/" + type.toString().toLowerCase() + "/"
@@ -109,8 +110,6 @@ def  KeyValue convertField(String line){
 
 def parseLine(String line){
 
-
-
     String [] val = line.split(">")
     if(val.size() == 2){
         val[1]
@@ -141,6 +140,8 @@ for(int i = 1; i < 16; i++){
     }else{
         day = i
     }
+
+    parsePreSolCombine("FBOFeed201401$day")
 }
 
 
