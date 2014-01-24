@@ -22,4 +22,4 @@ Usage:<br>
 5.)  Check ./downloads to make sure there are output files.<br>
 6.)  type ~>  groovy fboesimport.groovy<br>
 7.)  You should see the files get imported into ElasticSearch.<br>
-8.)  Download and install [Kibana](http://www.elasticsearch.org/overview/kibana/).  Prepare to cyber-dazzle management.
+8.)  Download and install [Kibana](http://www.elasticsearch.org/overview/kibana/).  Set up kibana and point it to your local instance of elasticsearch.  Prepare to cyber-dazzle management.
