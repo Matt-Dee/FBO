@@ -4,7 +4,7 @@ FBO
 This project will pull down FBO feeds from https://www.fbo.gov and index them in elastic search.
 
 ###Setting up your environment
-You will need to download groovy 2.2.1 from [here](http://dist.groovy.codehaus.org/distributions/groovy-binary-2.2.1.zip).  You can follow these [directions to install groovy](http://groovy.codehaus.org/Installing+Groovy).  You will also need elastic search.  [Download elastic](http://www.elasticsearch.org/download/).  The directions for getting elasticsearch up and running are [here](https://github.com/elasticsearch/elasticsearch/blob/master/README.textile).
+You will need to download groovy 2.2.1 from [here](http://dist.groovy.codehaus.org/distributions/groovy-binary-2.2.1.zip).  You can follow these [directions to install groovy](http://groovy.codehaus.org/Installing+Groovy).  You will also need elastic search.  [Download elasticsearch](http://www.elasticsearch.org/download/).  The directions for getting elasticsearch up and running are [here](https://github.com/elasticsearch/elasticsearch/blob/master/README.textile).
 
 The final step is to navigate to the scripts directory.  Make sure elasticsearch is running and execute the createIndex.sh script.  You're all ready to go.  
 
